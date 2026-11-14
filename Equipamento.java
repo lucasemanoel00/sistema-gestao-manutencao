@@ -1,39 +1,5 @@
 public class Equipamento {
     
-    public enum TipoEquipamento {
-
-        COMPUTADOR,
-        NOTEBOOK,
-        IMPRESSORA,
-        MONITOR,
-        SERVIDOR,
-        MAQUINA,
-        OUTRO;
-
-    }
-    public enum StatusEquipamento {
-
-        OPERACIONAL,
-        COM_DEFEITO,
-        EM_MANUTENCAO,
-        INATIVO;
-
-    }
-    public enum SetorEmpresa {
-
-        TI,
-        RECURSOS_HUMANOS,
-        FINANCEIRO,
-        ADMINISTRATIVO,
-        COMERCIAL,
-        PRODUCAO,
-        LOGISTICA,
-        OPERACIONAL,
-        DIRETORIA,
-        OUTRO;
-
-    }
-
     private static int geradorId = 1000;
     private final int identificador = ++geradorId;
     private String nomeEquipamento;
@@ -45,14 +11,48 @@ public class Equipamento {
 
     public Equipamento(String nomeEquipamento,TipoEquipamento tipoEquipamento,StatusEquipamento statusEquipamento,SetorEmpresa setorEmpresa,String descricao) {
 
-        this.nomeEquipamento = nomeEquipamento;
-        this.tipoEquipamento = tipoEquipamento;
+        if (nomeEquipamento == null || nomeEquipamento.isBlank()){
+            
+           throw new IllegalArgumentException("Erro, nome do equipamento não informado,tente novamente!");
+        
+        }
+
+         this.nomeEquipamento = nomeEquipamento;
+        
+        if (tipoEquipamento == null) {
+
+           throw new IllegalArgumentException("Erro, tipo do equipamento não informado,tente novamente!");
+        
+        }
+
+         this.tipoEquipamento = tipoEquipamento;
+
+        if (statusEquipamento == null) {
+
+            throw new IllegalArgumentException("Erro, STATUS do equipamento não informado,tente novamente!");
+
+        }
+
         this.statusEquipamento = statusEquipamento;
+
+        if (setorEmpresa == null) {
+
+            throw new IllegalArgumentException("Erro, SETOR do equipamento não informado,tente novamente!");
+
+        }
+
         this.setorEmpresa = setorEmpresa;
+
+        if (descricao == null || descricao.isBlank()) {
+        
+            throw new IllegalArgumentException("Erro, DESCRIÇÃO do equipamento não informado,tente novamente!");
+
+        }
+
         this.descricao = descricao;
 
     }
-    public int getIdentificador() {
+    public int getIdentificadorEquipamento() {
 
         return this.identificador;
 
@@ -98,7 +98,7 @@ public class Equipamento {
 
         if (statusEquipamento == null) {
 
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Erro, STATUS do equipamento não informado,tente novamente!");
 
         }
 
@@ -140,13 +140,8 @@ public class Equipamento {
     @Override 
     public String toString() {
 
-        return "====== MÁQUINA %d ====== \nNome do equipamento: %s \nTipo da equipamento: %s \nStatus da equipamento: %s \nSetor da empresa: %s \nString descrição do problema: %s".formatted(getIdentificador(),getNomeEquipamento(),getTipoEquipamento(),getStatusEquipamento(),getSetorEmpresa(),getDescricao());
+        return "====== EQUIPAMENTO: %d ====== \nNome do equipamento: %s \nTipo da equipamento: %s \nStatus da equipamento: %s \nSetor da empresa: %s \nString descrição do equipamento: %s".formatted(getIdentificadorEquipamento(),getNomeEquipamento(),getTipoEquipamento(),getStatusEquipamento(),getSetorEmpresa(),getDescricao());
 
     }
-
-
-
-
-
 
 }
