@@ -18,7 +18,7 @@ public class Pessoa {
 
         this.nomePessoa = nomePessoa;
         
-        if (cpf == null ||cpf.isBlank()) {
+        if (cpf == null ||cpf.isBlank() ||cpf.length()!=11) {
 
             throw new IllegalArgumentException("ERRO, CPF inválido, tente novamente!");
 
@@ -79,7 +79,7 @@ public class Pessoa {
 
     public void setCpf(String cpf) {
 
-        if (cpf == null ||cpf.isBlank()) {
+        if (cpf == null || cpf.isBlank() || cpf.length()!=11) {
 
             throw new IllegalArgumentException("ERRO, CPF inválido, tente novamente!");
 
@@ -145,7 +145,7 @@ public class Pessoa {
     @Override 
     public String toString() {
 
-        return "==== Pessoa %d ==== \nNome da pessoa: %s \nCPF: %s \nTelefone: %s \nEmail: %s \nEndereço (CEP): %s".formatted(getIdentificadorPessoa(),getNomePessoa(),getCpf(),getTelefone(),getEmail(),getEndereco());
+        return "==== Pessoa %d ==== \nNome da pessoa: %s \nCPF: %s \nTelefone: %s \nEmail: %s \nEndereço: %s".formatted(getIdentificadorPessoa(),getNomePessoa(),getCpf(),getTelefone(),getEmail(),getEndereco());
 
     }
     
