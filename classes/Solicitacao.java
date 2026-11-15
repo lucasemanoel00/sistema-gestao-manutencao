@@ -190,7 +190,7 @@ public class Solicitacao {
     @Override 
     public String toString() {
 
-        return "==== Solicitação %d ==== \n%s \n%s \nData de solicitação: %s \nPrioridade: %s \nStatus da solicitação: %s \nDescrição da solicitação: %s".formatted(getIdSolicitacao(),getEquipamento(),getFuncionarioSolicitante(),getDataSolicitacaoFormat(),getPrioridade(),getStatusSolicitacao(),getDescricaoSolicitacao());
+        return "==== Solicitação %d ==== \n%s \n \n \n%s \nData de solicitação: %s \nPrioridade: %s \nStatus da solicitação: %s \nDescrição da solicitação: %s".formatted(getIdSolicitacao(),getEquipamento(),getFuncionarioSolicitante(),getDataSolicitacaoFormat(),getPrioridade(),getStatusSolicitacao(),getDescricaoSolicitacao());
 
     }
     
