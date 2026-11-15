@@ -1,4 +1,5 @@
-    public enum SetorEmpresa {
+package enums;
+public enum SetorEmpresa {
 
         TI,
         RECURSOS_HUMANOS,
@@ -12,3 +13,4 @@
         OUTRO;
 
     }
+
