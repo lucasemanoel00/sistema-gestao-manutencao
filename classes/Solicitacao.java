@@ -187,6 +187,12 @@ public class Solicitacao {
         this.descricaoSolicitacao = descricaoSolicitacao;
 
     } 
+    @Override 
+    public String toString() {
+
+        return "==== Solicitação %d ==== \n%s \n%s \nData de solicitação: %s \nPrioridade: %s \nStatus da solicitação: %s \nDescrição da solicitação: %s".formatted(getIdSolicitacao(),getEquipamento(),getFuncionarioSolicitante(),getDataSolicitacaoFormat(),getPrioridade(),getStatusSolicitacao(),getDescricaoSolicitacao());
+
+    }
     
 
     
