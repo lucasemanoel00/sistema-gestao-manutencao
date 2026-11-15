@@ -1,3 +1,6 @@
+package classes;
+import enums.*;
+
 public class Equipamento {
     
     private static int geradorId = 1000;

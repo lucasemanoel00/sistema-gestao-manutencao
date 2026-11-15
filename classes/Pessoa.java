@@ -1,3 +1,6 @@
+package classes;
+
+
 public class Pessoa {
     
     private static int geradorId = 0;

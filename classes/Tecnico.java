@@ -1,3 +1,7 @@
+package classes;
+import enums.SetorEmpresa;
+
+
 public class Tecnico extends Funcionario{
     
     private boolean disponibilidade;
