@@ -2,9 +2,11 @@ package classes;
 
 import enums.StatusManutencao;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Manutencao {
     
+    private DateTimeFormatter FORMATO = DateTimeFormatter.ofLocalizedPattern("dd/MM/yyyy \n HH:mm:ss");
     private static int geradorId = 0;
     private final int idManutencao = ++geradorId;
     private final Solicitacao solicitacao;
@@ -74,6 +76,11 @@ public class Manutencao {
         return this.dataInicio;
 
     }
+    public String getDataInicioFormat() {
+
+        return this.dataInicio.format(FORMATO);
+
+    }
 
     public void comecarManutencao() {
 
@@ -102,7 +109,11 @@ public class Manutencao {
         return this.dataConclusao;
 
     }
+    public String getDataConclusaoFormat() {
 
+        return this.dataConclusao.format(FORMATO);
+
+    } 
     public void concluirManutencao() {
 
         if (this.statusManutencao != StatusManutencao.EM_ANDAMENTO) {
@@ -190,6 +201,12 @@ public class Manutencao {
     public StatusManutencao getStatusManutencao() {
 
         return this.statusManutencao;
+
+    }
+    @Override
+    public String toString() {
+
+        return " ";
 
     }
     
