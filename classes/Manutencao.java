@@ -206,7 +206,7 @@ public class Manutencao {
     @Override
     public String toString() {
 
-        return " ";
+        return "==== Manutenção %d ==== \n %s \n %s \nData de inicio: %s \nData Final: %s \nDiagnóstico: %s \nDescrição: %s \nStatus da Manutenção: %s".formatted(getIdentificadorManutencao(),getSolicitacao(),getTecnico(),getDataInicioFormat(),getDataConclusaoFormat(),getDiagnostico(),getDescricaoServico(),getStatusManutencao());
 
     }
     
