@@ -83,7 +83,26 @@ public class Manutencao {
 
     public void comecarManutencao() {
 
+        if (this.tecnico == null || !this.tecnico.verDisponibilidade()) {
+
+            throw new IllegalArgumentException("Erro, Técnico não inserido ou indisponivel");
+
+        }
+        if (this.statusManutencao == StatusManutencao.CONCLUIDA) {
+
+            throw new IllegalArgumentException("Erro, Manutenção já concluida");
+
+        }
+        if (this.statusManutencao == StatusManutencao.CANCELADA) {
+
+            throw new IllegalArgumentException("Erro, Manutenção já cancelada");
+
+        }
+
+
         this.dataInicio = LocalDateTime.now();
+        this.statusManutencao = StatusManutencao.EM_ANDAMENTO;
+        this.tecnico.tecnicoOcupado();
 
     }
 
@@ -97,7 +116,7 @@ public class Manutencao {
 
         if (this.statusManutencao != StatusManutencao.EM_ANDAMENTO) {
 
-            throw new IllegalStateException("Erro. Manutenção não está pendente");
+            throw new IllegalStateException("Erro. Manutenção não está em andamento");
 
         }
         else if (this.tecnico == null) {
@@ -117,14 +136,23 @@ public class Manutencao {
         }
 
         this.dataConclusao = LocalDateTime.now();
+        this.statusManutencao = StatusManutencao.CONCLUIDA;
+        this.tecnico.tecnicoDesocupado();
 
     }
+    public void cancelarManutencao() {
+
+        this.statusManutencao = StatusManutencao.CANCELADA;
+
+    }
+
+
     public String getDiagnostico() {
 
         return this.diagnostico;
 
     }
-    public void setDiaginostico(String diagnostico) {
+    public void setDiagnostico(String diagnostico) {
 
         if (diagnostico == null || diagnostico.isBlank()) {
 
@@ -135,6 +163,26 @@ public class Manutencao {
         this.diagnostico = diagnostico;
 
     }
+    public String getDescricaoServico() {
 
+        return this.descricaoServico;
+
+    }
+    public void setDescricaoServico(String descricaoServico) {
+
+        if (descricaoServico == null || descricaoServico.isBlank()) {
+
+            throw new IllegalArgumentException("Erro, descrição inválida");
+
+        }
+
+        this.descricaoServico = descricaoServico;
+
+    }
+    public StatusManutencao getStatusManutencao() {
+
+        return this.statusManutencao;
+
+    }
     
 }
