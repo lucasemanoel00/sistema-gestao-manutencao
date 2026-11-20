@@ -15,7 +15,7 @@ public class Manutencao {
     private String descricaoServico;
     private StatusManutencao statusManutencao;
 
-    public Manutencao(Solicitacao solicitacao,Tecnico tecnico,String diagnotisco,String descricao,StatusManutencao statusManutencao) {
+    public Manutencao(Solicitacao solicitacao) {
 
         if (solicitacao == null) {
 
@@ -24,37 +24,9 @@ public class Manutencao {
         }
 
         this.solicitacao = solicitacao;
-
-        if (tecnico == null) {
-
-            throw new IllegalArgumentException("Erro, técnico não foi inserido de forma correta");
-
-        }
-        if (diagnotisco == null || diagnotisco.isBlank()) {
-
-            throw new IllegalArgumentException("Erro, diagnostico inserido está vazio");
-
-        }
-        
-        this.diagnostico = diagnotisco;
-
-        if (descricao == null || descricao.isBlank()) {
-
-            throw new IllegalArgumentException("Erro, descrição inserida está vazia");
-
-        }
-
-        this.descricaoServico = descricao;
-
-        if (statusManutencao == null) {
-
-            throw new IllegalArgumentException("Erro. Status de manutenção não definido");
-
-        }
-
-        this.statusManutencao = statusManutencao;
+        this.statusManutencao = StatusManutencao.PENDENTE;
 
     }
-    
+
     
 }
