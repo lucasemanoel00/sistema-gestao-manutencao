@@ -50,14 +50,17 @@ public class Funcionario extends Pessoa{
     }
     public void setDataContratacao(int dia,int mes,int ano) {
 
-        LocalDate validarData = LocalDate.of(ano, mes,dia);
+        
 
         if (dia<=0 || mes<=0 || ano<=0){
 
             throw new IllegalArgumentException("Erro, o dia ou mês ou ano é inferior a 0, tente novamente com data válida");
 
         } 
-        else if (validarData.isAfter(LocalDate.now())) {
+
+        LocalDate validarData = LocalDate.of(ano, mes,dia);
+
+        if (validarData.isAfter(LocalDate.now())) {
 
             throw new IllegalArgumentException("Erro, a data é inválida por ser após o dia atual de hoje");
 
@@ -83,6 +86,12 @@ public class Funcionario extends Pessoa{
 
     }
     public void setSetorEmpresaFuncio(SetorEmpresa setorEmpresa) {
+
+        if (setorEmpresa == null) {
+
+            throw new IllegalArgumentException("Erro, setor não registrado de forma correta!");
+
+        }
 
         this.setorEmpresaFuncionario = setorEmpresa;
 
