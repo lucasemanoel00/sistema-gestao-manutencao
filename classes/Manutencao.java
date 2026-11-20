@@ -47,6 +47,12 @@ public class Manutencao {
 
     public void atribuirTecnico(Tecnico tecnico) {
 
+        if (this.statusManutencao != StatusManutencao.PENDENTE) {
+
+            throw new IllegalStateException("Erro,Manutenção não está como Pendente");
+
+        }
+
         if (tecnico == null) {
 
             throw new IllegalArgumentException("Erro, técnico inserido inválido");
@@ -56,11 +62,6 @@ public class Manutencao {
         if (tecnico.verDisponibilidade() == false) {
 
             throw new IllegalArgumentException("Erro, técnico não disponivel para a manutenção devido a não ter disponibilidade");
-
-        }
-        if (this.statusManutencao != StatusManutencao.PENDENTE) {
-
-            throw new IllegalStateException("Não é possivel atribuir tecnico se a manutenção não está como pendente");
 
         }
 
@@ -81,27 +82,19 @@ public class Manutencao {
             throw new IllegalArgumentException("Erro, Técnico não inserido ou indisponivel");
 
         }
-        if (this.statusManutencao == StatusManutencao.CONCLUIDA) {
+        
+        if (this.statusManutencao ==            StatusManutencao.PENDENTE) {
+            
+            this.dataInicio = LocalDateTime.now();
+            this.statusManutencao = StatusManutencao.EM_ANDAMENTO;
+            this.tecnico.tecnicoOcupado();
+        
+        }
+        else {
 
-            throw new IllegalStateException("Erro, Manutenção já concluida");
+            throw new IllegalStateException("Erro, Status da manutenção não está como pendente para ser iniciada agora");
 
         }
-        if (this.statusManutencao == StatusManutencao.CANCELADA) {
-
-            throw new IllegalStateException("Erro, Manutenção já cancelada");
-
-        }
-        if (this.statusManutencao == StatusManutencao.EM_ANDAMENTO) {
-
-            throw new IllegalStateException("Erro,Manutenção em andamento");
-
-        }
-
-
-        this.dataInicio = LocalDateTime.now();
-        this.statusManutencao = StatusManutencao.EM_ANDAMENTO;
-        this.tecnico.tecnicoOcupado();
-
     }
 
     public LocalDateTime getDataConclusao() {
@@ -153,8 +146,12 @@ public class Manutencao {
 
 
         this.statusManutencao = StatusManutencao.CANCELADA;
-        this.tecnico.tecnicoDesocupado();
 
+        if (this.tecnico != null){
+            
+            this.tecnico.tecnicoDesocupado();
+
+        }
     }
 
 
