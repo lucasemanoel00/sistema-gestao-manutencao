@@ -143,7 +143,7 @@ public class Equipamento {
     @Override 
     public String toString() {
 
-        return "====== EQUIPAMENTO: %d ====== \nNome do equipamento: %s \nTipo da equipamento: %s \nStatus da equipamento: %s \nSetor da empresa: %s \nString descrição do equipamento: %s".formatted(getIdentificadorEquipamento(),getNomeEquipamento(),getTipoEquipamento(),getStatusEquipamento(),getSetorEmpresa(),getDescricao());
+        return "====== EQUIPAMENTO: %d ====== \nNome do equipamento: %s \nTipo da equipamento: %s \nStatus da equipamento: %s \nSetor da empresa: %s \nDescrição do equipamento: %s".formatted(getIdentificadorEquipamento(),getNomeEquipamento(),getTipoEquipamento(),getStatusEquipamento(),getSetorEmpresa(),getDescricao());
 
     }
 
