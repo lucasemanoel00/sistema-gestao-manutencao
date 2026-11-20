@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Manutencao {
     
-    private DateTimeFormatter FORMATO = DateTimeFormatter.ofLocalizedPattern("dd/MM/yyyy \n HH:mm:ss");
+    private final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     private static int geradorId = 0;
     private final int idManutencao = ++geradorId;
     private final Solicitacao solicitacao;
@@ -78,6 +78,13 @@ public class Manutencao {
     }
     public String getDataInicioFormat() {
 
+        if (this.dataInicio == null) {
+
+            return "Data de início não definida";
+
+        }
+
+
         return this.dataInicio.format(FORMATO);
 
     }
@@ -110,6 +117,12 @@ public class Manutencao {
 
     }
     public String getDataConclusaoFormat() {
+
+        if (this.dataConclusao == null) {
+
+            return "Data de início não definida";
+
+        }
 
         return this.dataConclusao.format(FORMATO);
 
