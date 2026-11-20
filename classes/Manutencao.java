@@ -7,7 +7,7 @@ public class Manutencao {
     
     private static int geradorId = 0;
     private final int idManutencao = ++geradorId;
-    private Solicitacao solicitacao;
+    private final Solicitacao solicitacao;
     private Tecnico tecnico;
     private LocalDateTime dataInicio;
     private LocalDateTime dataConclusao;
@@ -27,24 +27,17 @@ public class Manutencao {
         this.statusManutencao = StatusManutencao.PENDENTE;
 
     }
+    public int getIdentificadorManutencao() {
+
+        return this.idManutencao;
+
+    }
 
     public Solicitacao getSolicitacao(){
 
         return this.solicitacao;
 
     } 
-
-    public void setSolicitacao(Solicitacao solicitacao) {
-
-        if (solicitacao == null) {
-
-            throw new IllegalArgumentException("Erro. solicitação inserida inválida");
-
-        }
-
-        this.solicitacao = solicitacao;
-
-    }
 
     public Tecnico getTecnico() {
 
@@ -90,12 +83,17 @@ public class Manutencao {
         }
         if (this.statusManutencao == StatusManutencao.CONCLUIDA) {
 
-            throw new IllegalArgumentException("Erro, Manutenção já concluida");
+            throw new IllegalStateException("Erro, Manutenção já concluida");
 
         }
         if (this.statusManutencao == StatusManutencao.CANCELADA) {
 
-            throw new IllegalArgumentException("Erro, Manutenção já cancelada");
+            throw new IllegalStateException("Erro, Manutenção já cancelada");
+
+        }
+        if (this.statusManutencao == StatusManutencao.EM_ANDAMENTO) {
+
+            throw new IllegalStateException("Erro,Manutenção em andamento");
 
         }
 
@@ -142,7 +140,20 @@ public class Manutencao {
     }
     public void cancelarManutencao() {
 
+        if (this.statusManutencao == StatusManutencao.CONCLUIDA) {
+
+            throw new IllegalStateException("Erro, Manutenção já concluida");
+
+        }
+        if (this.statusManutencao == StatusManutencao.CANCELADA) {
+
+            throw new IllegalStateException("Erro,Manutenção já cancelada anteriormente");
+
+        }
+
+
         this.statusManutencao = StatusManutencao.CANCELADA;
+        this.tecnico.tecnicoDesocupado();
 
     }
 
